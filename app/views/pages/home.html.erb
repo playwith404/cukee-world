@@ -1,0 +1,317 @@
+<% content_for(:title) { "playwith404 - AI 영화 큐레이션 서비스 Cukee" } %>
+
+<!-- Hero Section with Parallax -->
+<section class="hero-parallax section-lemon border-b-4 border-black"
+         data-controller="parallax">
+
+  <!-- 패럴랙스 캐릭터들 -->
+  <img src="<%= asset_path('characters/ghost.svg') %>"
+       class="parallax-character animate-float hidden md:block"
+       data-parallax-target="character"
+       data-speed="20" data-rotate="5"
+       style="top: 10%; left: 5%;"
+       alt="고스트 캐릭터">
+
+  <img src="<%= asset_path('characters/lemon.svg') %>"
+       class="parallax-character animate-float-delay-1 hidden md:block"
+       data-parallax-target="character"
+       data-speed="40" data-rotate="8"
+       style="top: 5%; right: 10%;"
+       alt="레몬 캐릭터">
+
+  <img src="<%= asset_path('characters/heart.svg') %>"
+       class="parallax-character animate-float-delay-2 hidden md:block"
+       data-parallax-target="character"
+       data-speed="30" data-rotate="6"
+       style="bottom: 20%; right: 5%;"
+       alt="하트 캐릭터">
+
+  <img src="<%= asset_path('characters/star.svg') %>"
+       class="parallax-character animate-float-slow hidden lg:block"
+       data-parallax-target="character"
+       data-speed="25" data-rotate="4"
+       style="bottom: 15%; left: 8%;"
+       alt="별 캐릭터">
+
+  <img src="<%= asset_path('characters/bean.svg') %>"
+       class="parallax-character animate-float hidden lg:block"
+       data-parallax-target="character"
+       data-speed="35" data-rotate="7"
+       style="top: 25%; right: 20%;"
+       alt="콩 캐릭터">
+
+  <!-- 히어로 콘텐츠 -->
+  <div class="hero-content max-w-4xl mx-auto px-4 py-32 md:py-40 text-center">
+    <h1 class="heading-brutal-xl mb-6">
+      playwith404
+    </h1>
+    <p class="text-xl md:text-2xl mb-4 font-medium">
+      저희는 창의적인 디지털 경험을 만듭니다
+    </p>
+    <p class="text-lg md:text-xl mb-10 text-gray-700">
+      AI 기반 영화 큐레이션 서비스 <strong>Cukee</strong>를 만나보세요
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <%= link_to "서비스 시작하기", "https://middle.cloudkakao.store/auth/login",
+          class: "btn-brutal text-center", target: "_blank", rel: "noopener" %>
+      <%= link_to "더 알아보기", "#about", class: "btn-brutal-outline text-center" %>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<!-- 섹션 구분선 -->
+<div class="divider-brutal-pattern"></div>
+
+<section id="about" class="py-20 md:py-32 bg-white bg-dots-overlay border-b-4 border-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <!-- 텍스트 -->
+      <div>
+        <span class="badge-brutal bg-char-ghost mb-6 inline-block">About Us</span>
+        <h2 class="heading-brutal-lg mb-6">
+          영화를 더 즐겁게,<br>
+          선택을 더 쉽게
+        </h2>
+        <p class="text-lg mb-6 leading-relaxed">
+          <strong>playwith404</strong>는 사용자 경험을 혁신하는 디지털 프로덕트를 만드는 팀입니다.
+        </p>
+        <p class="text-lg mb-6 leading-relaxed">
+          저희의 첫 번째 서비스 <strong>Cukee</strong>는 "영화 고르다 잠드는" 문제를 해결합니다.
+          장르가 아닌 <strong>11개의 감성 티켓</strong>으로 지금 이 순간의 기분에 맞는 영화를
+          AI가 큐레이션합니다.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 bg-char-lemon border-4 border-black font-bold text-sm shadow-[2px_2px_0px_#000]">AI 큐레이션</span>
+          <span class="px-4 py-2 bg-char-heart border-4 border-black font-bold text-sm shadow-[2px_2px_0px_#000]">감성 기반 추천</span>
+          <span class="px-4 py-2 bg-char-ghost border-4 border-black font-bold text-sm shadow-[2px_2px_0px_#000]">3D 갤러리</span>
+        </div>
+      </div>
+
+      <!-- 일러스트 -->
+      <div class="relative">
+        <div class="card-brutal bg-char-bean p-8">
+          <div class="aspect-square bg-white border-4 border-black flex items-center justify-center relative overflow-hidden">
+            <div class="text-center">
+              <span class="text-8xl block mb-4">🎬</span>
+              <p class="font-display font-bold text-2xl">Cukee</p>
+              <p class="text-sm text-gray-600">by playwith404</p>
+            </div>
+          </div>
+        </div>
+        <!-- 장식 요소 -->
+        <div class="absolute -top-4 -right-4 w-16 h-16 bg-char-heart border-4 border-black
+                    shadow-brutal flex items-center justify-center text-2xl animate-float">
+          🎟️
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-14 h-14 bg-char-lemon border-4 border-black
+                    shadow-brutal flex items-center justify-center text-xl animate-float-delay-1">
+          🍿
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 구분선 -->
+<div class="section-divider-stripes"></div>
+
+<!-- Services Section -->
+<section id="services" class="py-20 md:py-32 section-ghost border-b-4 border-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="badge-brutal bg-char-heart mb-4 inline-block">Services</span>
+      <h2 class="heading-brutal-lg mb-4">Cukee가 특별한 이유</h2>
+      <p class="text-xl max-w-2xl mx-auto">기존 OTT가 놓친 핵심 니즈를 해결합니다</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- 서비스 1 -->
+      <div class="card-brutal-hover bg-char-lemon">
+        <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
+                    flex items-center justify-center text-3xl mb-6">
+          🎟️
+        </div>
+        <h3 class="font-bold text-2xl mb-3">11개 감성 티켓</h3>
+        <p class="text-lg">장르가 아닌 감정으로 분류. "지금 우울해", "웃고 싶어" 같은 현재 기분에 맞는 영화를 발견합니다.</p>
+      </div>
+
+      <!-- 서비스 2 -->
+      <div class="card-brutal-hover bg-char-heart">
+        <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
+                    flex items-center justify-center text-3xl mb-6">
+          🤖
+        </div>
+        <h3 class="font-bold text-2xl mb-3">AI 맞춤 큐레이션</h3>
+        <p class="text-lg">Llama 3.1 기반 AI가 프롬프트 하나로 완벽하게 개인화된 영화 전시회를 생성합니다.</p>
+      </div>
+
+      <!-- 서비스 3 -->
+      <div class="card-brutal-hover bg-char-bean">
+        <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
+                    flex items-center justify-center text-3xl mb-6">
+          🖼️
+        </div>
+        <h3 class="font-bold text-2xl mb-3">3D 갤러리 경험</h3>
+        <p class="text-lg">미술관처럼 영화 포스터를 감상하는 프리미엄 경험. 단순한 목록이 아닌 전시회 형태로 제공합니다.</p>
+      </div>
+    </div>
+
+    <!-- 서비스 스크린샷/목업 영역 -->
+    <div class="mt-16">
+      <div class="card-brutal bg-white p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="heading-brutal text-3xl md:text-4xl mb-4">
+              영화 고르다<br>잠드는 일은 이제 그만
+            </h3>
+            <ul class="space-y-4 text-lg">
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 bg-char-lemon border-4 border-black flex items-center justify-center font-bold shrink-0">✓</span>
+                <span>티켓 선택 후 <strong>10초 이내</strong> 즉시 큐레이션</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 bg-char-lemon border-4 border-black flex items-center justify-center font-bold shrink-0">✓</span>
+                <span>AI가 엄선한 <strong>5-10편</strong>의 맞춤 영화</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 bg-char-lemon border-4 border-black flex items-center justify-center font-bold shrink-0">✓</span>
+                <span>각 영화마다 <strong>큐레이터 코멘트</strong> 제공</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-char-star border-4 border-black p-6 aspect-video flex items-center justify-center">
+            <div class="text-center">
+              <span class="text-6xl block mb-2">🎪</span>
+              <p class="font-bold">서비스 스크린샷</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 구분선 -->
+<div class="divider-brutal-pattern"></div>
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 md:py-32 bg-white border-b-4 border-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="badge-brutal bg-char-lemon mb-4 inline-block">Pricing</span>
+      <h2 class="heading-brutal-lg mb-4">심플한 요금제</h2>
+      <p class="text-xl">무료로 시작하고, 필요하면 업그레이드하세요</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Free Plan -->
+      <div class="pricing-card bg-char-ghost">
+        <h3 class="font-display font-bold text-2xl mb-2">Free</h3>
+        <p class="text-4xl font-bold font-display mb-1">₩0</p>
+        <p class="text-gray-600 mb-6">/월</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>영화 추천 하루 5회</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>기본 장르 필터 5개</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>큐레이션 저장 10개</span>
+          </li>
+          <li class="flex items-center gap-2 text-gray-500">
+            <span>-</span>
+            <span>광고 포함</span>
+          </li>
+        </ul>
+        <%= link_to "시작하기", "https://middle.cloudkakao.store/auth/login",
+            class: "btn-brutal-outline w-full text-center block", target: "_blank", rel: "noopener" %>
+      </div>
+
+      <!-- Pro Plan (Featured) -->
+      <div class="pricing-card featured bg-char-heart relative">
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <span class="bg-black text-white px-4 py-1 font-bold text-sm">POPULAR</span>
+        </div>
+        <h3 class="font-display font-bold text-2xl mb-2">Pro</h3>
+        <p class="text-4xl font-bold font-display mb-1">₩4,900</p>
+        <p class="text-gray-600 mb-6">/월</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>무제한</strong> 영화 추천</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>전체 장르</strong> 필터</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>무제한</strong> 큐레이션 저장</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>광고 없음</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>우선 고객지원</span>
+          </li>
+        </ul>
+        <%= link_to "시작하기", "https://middle.cloudkakao.store/auth/login",
+            class: "btn-brutal w-full text-center block", target: "_blank", rel: "noopener" %>
+      </div>
+
+      <!-- Custom Plan -->
+      <div class="pricing-card bg-char-dog">
+        <h3 class="font-display font-bold text-2xl mb-2">Custom</h3>
+        <p class="text-4xl font-bold font-display mb-1">문의</p>
+        <p class="text-gray-600 mb-6">맞춤 설정</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>Pro의 모든 기능</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>커스텀 장르 설정</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>전담 매니저</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>API 연동 지원</span>
+          </li>
+        </ul>
+        <button class="btn-brutal-outline w-full text-center btn-disabled" disabled>
+          Coming Soon
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 md:py-32 bg-black text-white">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="heading-brutal-lg mb-6 text-white">
+      지금 바로 시작하세요
+    </h2>
+    <p class="text-xl mb-10 text-gray-300">
+      영화 선택 피로에서 벗어나 AI가 큐레이션하는 맞춤형 영화 전시회를 경험하세요
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <%= link_to "무료로 시작하기", "https://middle.cloudkakao.store/auth/login",
+          class: "bg-transparent text-white font-bold text-lg px-8 py-4 border-4 border-white hover:bg-white hover:text-black transition-colors text-center",
+          target: "_blank", rel: "noopener" %>
+      <%= link_to "문의하기", new_contact_path,
+          class: "bg-transparent text-white font-bold text-lg px-8 py-4 border-4 border-white hover:bg-white hover:text-black transition-colors text-center" %>
+    </div>
+  </div>
+</section>

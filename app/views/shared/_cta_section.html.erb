@@ -1,0 +1,16 @@
+<section class="py-20 md:py-32 bg-black text-white">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="heading-brutal-lg mb-6 text-white">
+      지금 바로 시작하세요
+    </h2>
+    <p class="text-xl mb-10 text-gray-300">
+      영화 선택 피로에서 벗어나 AI가 큐레이션하는 맞춤형 영화 전시회를 경험하세요
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <%= link_to "무료로 시작하기", "https://middle.cloudkakao.store/auth/login",
+          class: "btn-cta-gumroad text-center text-lg px-8 py-4", target: "_blank", rel: "noopener" %>
+      <%= link_to "문의하기", new_contact_path,
+          class: "bg-white text-black font-bold px-8 py-4 border-3 border-white rounded-full hover:bg-gray-100 transition-all text-center" %>
+    </div>
+  </div>
+</section>

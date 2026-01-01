@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: cukee
+      POSTGRES_PASSWORD: cukee_password
+      POSTGRES_DB: cukee_world_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cukee -d cukee_world_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RAILS_ENV: production
+      DATABASE_URL: postgres://cukee:cukee_password@db:5432/cukee_world_production
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      RAILS_LOG_TO_STDOUT: "true"
+    ports:
+      - "80:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["./bin/thrust", "./bin/rails", "server"]
+
+volumes:
+  postgres_data:

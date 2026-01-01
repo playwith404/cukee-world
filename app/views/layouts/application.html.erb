@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= content_for(:title) || "playwith404 - AI 영화 큐레이션 서비스 Cukee" %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:description) || 'playwith404 - 창의적인 디지털 경험을 만듭니다. AI 기반 영화 큐레이션 서비스 Cukee를 만나보세요.' %>">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="playwith404">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="font-body bg-white text-black min-h-screen flex flex-col">
+    <%= render "shared/navbar" %>
+
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<% content_for(:title) { "기능 소개 - Cukee AI 영화 큐레이션" } %>
+
+<!-- Hero -->
+<section class="bg-brutal-blue border-b-4 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h1 class="heading-brutal-xl mb-6">Cukee의 기능</h1>
+    <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+      AI 기반 영화 큐레이션의 모든 것을 살펴보세요.
+      11개의 감성 티켓, 맞춤형 AI 큐레이터, 3D 갤러리 경험까지.
+    </p>
+  </div>
+</section>
+
+<!-- Feature Grid -->
+<section class="py-20 bg-brutal-cream">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% colors = %w[bg-brutal-yellow bg-brutal-pink bg-brutal-lime bg-brutal-mint bg-brutal-blue bg-brutal-orange] %>
+      <% icons = %w[🚀 🔒 📈 👥 ⚡ 🌐] %>
+      <% @features.each_with_index do |feature, index| %>
+        <div class="card-brutal-hover <%= colors[index % colors.length] %>">
+          <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
+                      flex items-center justify-center text-3xl mb-6">
+            <%= icons[index % icons.length] %>
+          </div>
+          <h3 class="font-bold text-2xl mb-3"><%= feature[:title] %></h3>
+          <p class="text-lg"><%= feature[:description] %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Detail 1 -->
+<section class="py-20 bg-white border-y-4 border-black">
+  <div class="max-w-7xl mx-auto px-4 space-y-24">
+    <!-- 11 Emotion Tickets -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="card-brutal bg-brutal-yellow p-8">
+        <div class="aspect-video bg-white border-4 border-black flex items-center justify-center text-6xl">
+          🎟️
+        </div>
+      </div>
+      <div>
+        <span class="badge-brutal mb-4">감성 티켓</span>
+        <h3 class="heading-brutal text-3xl md:text-4xl mb-4">11개의 감성 기반 분류</h3>
+        <p class="text-lg mb-6">
+          기존 OTT의 장르 분류와는 다릅니다. "지금 이 순간의 기분"에 맞는 영화를 찾을 수 있도록
+          감성 기반으로 설계된 11개의 티켓 테마를 제공합니다.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-lime text-xl">■</span> 편안하고 잔잔한 감성
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-lime text-xl">■</span> 설레고 싶은 날의 로맨스
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-lime text-xl">■</span> 심장 터질 것 같은 액션 범죄
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI Curator -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1">
+        <span class="badge-brutal bg-brutal-pink mb-4">AI 큐레이터</span>
+        <h3 class="heading-brutal text-3xl md:text-4xl mb-4">Llama 3.1 기반 맞춤 추천</h3>
+        <p class="text-lg mb-6">
+          각 티켓마다 고유한 AI 큐레이터 페르소나가 있습니다.
+          프롬프트를 입력하면 RAG 기반으로 개인화된 영화 전시회를 생성합니다.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-blue text-xl">■</span> 테마별 LoRA 어댑터 (11개)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-blue text-xl">■</span> pgvector 임베딩 검색
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-blue text-xl">■</span> 큐레이터 코멘트 자동 생성
+          </li>
+        </ul>
+      </div>
+      <div class="order-1 md:order-2 card-brutal bg-brutal-blue p-8">
+        <div class="aspect-video bg-white border-4 border-black flex items-center justify-center text-6xl">
+          🤖
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Gallery -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="card-brutal bg-brutal-mint p-8">
+        <div class="aspect-video bg-white border-4 border-black flex items-center justify-center text-6xl">
+          🖼️
+        </div>
+      </div>
+      <div>
+        <span class="badge-brutal bg-brutal-purple mb-4">3D 갤러리</span>
+        <h3 class="heading-brutal text-3xl md:text-4xl mb-4">미술관 같은 전시회 경험</h3>
+        <p class="text-lg mb-6">
+          단순한 목록 나열이 아닌, 3D 갤러리 형태로 영화 포스터를 감상합니다.
+          좌우 스와이프로 영화를 탐색하고, 마음에 안 드는 영화는 삭제할 수 있습니다.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-pink text-xl">■</span> 3D 회전 애니메이션
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-pink text-xl">■</span> 영화 삭제/저장 기능
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brutal-pink text-xl">■</span> 전시회 공유 (개발 중)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 Ticket Themes -->
+<section class="py-20 bg-brutal-cream">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h2 class="heading-brutal-lg mb-4">11개의 감성 티켓</h2>
+    <p class="text-xl mb-12">지금 기분에 맞는 티켓을 선택하세요</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card-brutal bg-brutal-yellow text-left">
+        <h4 class="font-bold text-lg">숏폼 러버 MZ</h4>
+        <p class="text-sm text-gray-700">빠르고 트렌디한 감각의 영화</p>
+      </div>
+      <div class="card-brutal bg-brutal-pink text-left">
+        <h4 class="font-bold text-lg">설레고 싶은 날의 로맨스</h4>
+        <p class="text-sm text-gray-700">심장 두근거리는 설렘</p>
+      </div>
+      <div class="card-brutal bg-brutal-blue text-left">
+        <h4 class="font-bold text-lg">뇌 빼고 볼 수 있는 레전드 코미디</h4>
+        <p class="text-sm text-gray-700">스트레스 날리는 웃음</p>
+      </div>
+      <div class="card-brutal bg-brutal-lime text-left">
+        <h4 class="font-bold text-lg">편안하고 잔잔한 감성</h4>
+        <p class="text-sm text-gray-700">마음을 위로하는 힐링</p>
+      </div>
+      <div class="card-brutal bg-brutal-mint text-left">
+        <h4 class="font-bold text-lg">세계관 과몰입 SF러버</h4>
+        <p class="text-sm text-gray-700">상상력 넘치는 SF 세계</p>
+      </div>
+      <div class="card-brutal bg-brutal-orange text-left">
+        <h4 class="font-bold text-lg">심장 터질 것 같은 액션 범죄</h4>
+        <p class="text-sm text-gray-700">긴장감 넘치는 스릴</p>
+      </div>
+      <div class="card-brutal bg-white text-left">
+        <h4 class="font-bold text-lg">여름에 찰떡인 역대급 호러</h4>
+        <p class="text-sm text-gray-700">오싹한 공포와 짜릿함</p>
+      </div>
+      <div class="card-brutal bg-white text-left">
+        <h4 class="font-bold text-lg">영화덕후의 최애 마이너영화</h4>
+        <p class="text-sm text-gray-700">인디 영화의 발견</p>
+      </div>
+      <div class="card-brutal bg-white text-left">
+        <h4 class="font-bold text-lg">이거 실화야? 실화야.</h4>
+        <p class="text-sm text-gray-700">감동의 실화 영화</p>
+      </div>
+      <div class="card-brutal bg-white text-left">
+        <h4 class="font-bold text-lg">찝찝한 여운의 우울한 명작들</h4>
+        <p class="text-sm text-gray-700">깊은 사색의 예술 영화</p>
+      </div>
+      <div class="card-brutal bg-white text-left">
+        <h4 class="font-bold text-lg">3D 보단 2D</h4>
+        <p class="text-sm text-gray-700">감성 넘치는 애니메이션</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<%= render "shared/cta_section" %>
