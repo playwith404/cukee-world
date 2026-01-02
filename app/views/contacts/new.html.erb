@@ -1,0 +1,84 @@
+<% content_for(:title) { "문의하기 - playwith404" } %>
+
+<!-- Hero -->
+<section class="section-heart border-b-3 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h1 class="heading-brutal-xl mb-6">Contact</h1>
+    <p class="text-xl md:text-2xl max-w-2xl mx-auto">
+      궁금한 점이 있으신가요? 24시간 내에 답변 드리겠습니다.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="grid md:grid-cols-5 gap-12">
+      <!-- Contact Info -->
+      <div class="md:col-span-2 space-y-6">
+        <div class="card-brutal bg-char-lemon">
+          <h3 class="font-bold text-lg mb-2">이메일</h3>
+          <p>playwith404@gmail.com</p>
+        </div>
+        <div class="card-brutal bg-char-ghost">
+          <h3 class="font-bold text-lg mb-2">서비스</h3>
+          <p>cukee.cloud</p>
+        </div>
+        <div class="card-brutal bg-char-bean">
+          <h3 class="font-bold text-lg mb-2">응답 시간</h3>
+          <p>평균 24시간 이내</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="md:col-span-3">
+        <%= form_with model: @contact, local: true, class: "card-brutal bg-white space-y-6" do |f| %>
+
+          <% if @contact.errors.any? %>
+            <div class="card-brutal bg-brutal-coral">
+              <h4 class="font-bold mb-2">입력 오류가 있습니다:</h4>
+              <ul class="list-disc list-inside">
+                <% @contact.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div>
+            <%= f.label :name, "이름 *", class: "block font-bold mb-2" %>
+            <%= f.text_field :name, class: "input-brutal", placeholder: "홍길동" %>
+          </div>
+
+          <div>
+            <%= f.label :email, "이메일 *", class: "block font-bold mb-2" %>
+            <%= f.email_field :email, class: "input-brutal", placeholder: "hello@example.com" %>
+          </div>
+
+          <div>
+            <%= f.label :company, "회사명", class: "block font-bold mb-2" %>
+            <%= f.text_field :company, class: "input-brutal", placeholder: "회사명 (선택사항)" %>
+          </div>
+
+          <div>
+            <%= f.label :inquiry_type, "문의 유형 *", class: "block font-bold mb-2" %>
+            <%= f.select :inquiry_type,
+                [["일반 문의", "general"], ["영업/구매", "sales"],
+                 ["기술 지원", "support"], ["파트너십", "partnership"]],
+                {}, class: "input-brutal" %>
+          </div>
+
+          <div>
+            <%= f.label :message, "메시지 *", class: "block font-bold mb-2" %>
+            <%= f.text_area :message, rows: 6, class: "input-brutal",
+                placeholder: "문의 내용을 입력해 주세요..." %>
+          </div>
+
+          <div>
+            <%= f.submit "보내기", class: "btn-brutal w-full cursor-pointer" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

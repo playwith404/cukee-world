@@ -1,0 +1,536 @@
+@import "tailwindcss";
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Neo-Brutalism Theme - playwith404 Gumroad Style */
+@theme {
+  /* 브랜드 색상 (쿠키 테마) */
+  --color-cookie-base: #C8A575;
+  --color-cookie-chip: #A1755A;
+
+  /* 캐릭터 파스텔 색상 (11개) */
+  --color-char-ghost: #C8D9F0;    /* 파란색 - 고스트 */
+  --color-char-lemon: #F5F0B5;    /* 노란색 - 레몬 */
+  --color-char-heart: #FADADD;    /* 핑크 - 하트 */
+  --color-char-rice: #F8E8E8;     /* 흰색 - 떡 */
+  --color-char-jelly: #5F7A8A;    /* 청회색 - 젤리 */
+  --color-char-bean: #B8D4C8;     /* 민트 - 콩 */
+  --color-char-dog: #C9C4B5;      /* 베이지 - 강아지 */
+  --color-char-glasses: #D4D4D4;  /* 회색 - 안경 젤리 */
+  --color-char-olive: #C8D9C0;    /* 연두색 - 올리브 */
+  --color-char-star: #D8D0E0;     /* 연보라 - 별 */
+  --color-char-cloud: #FADADD;    /* 핑크 - 구름 */
+
+  /* 레거시 호환 + 기본 색상 */
+  --color-brutal-yellow: #FFE500;
+  --color-brutal-blue: #00BFFF;
+  --color-brutal-pink: #FF6B9D;
+  --color-brutal-lime: #C8FF00;
+  --color-brutal-orange: #FF6600;
+  --color-brutal-purple: #9B5DE5;
+  --color-brutal-mint: #00F5D4;
+  --color-brutal-coral: #FF6B6B;
+  --color-brutal-black: #000000;
+  --color-brutal-white: #FFFFFF;
+  --color-brutal-cream: #FFF9E6;
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Hard Shadows (Neo-Brutalism) */
+  --shadow-brutal-sm: 2px 2px 0px 0px #000000;
+  --shadow-brutal: 4px 4px 0px 0px #000000;
+  --shadow-brutal-md: 6px 6px 0px 0px #000000;
+  --shadow-brutal-lg: 8px 8px 0px 0px #000000;
+  --shadow-brutal-xl: 12px 12px 0px 0px #000000;
+  --shadow-brutal-2xl: 16px 16px 0px 0px #000000;
+  --shadow-brutal-3xl: 20px 20px 0px 0px #000000;
+  --shadow-brutal-pressed: 2px 2px 0px 0px #000000;
+
+  /* Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-bounce-subtle: bounce-subtle 2s infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+}
+
+/* Base Styles */
+html {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Neo-Brutalism Components */
+
+/* Buttons */
+.btn-brutal {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 4px solid #000;
+  background-color: var(--color-brutal-yellow);
+  box-shadow: var(--shadow-brutal);
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-brutal:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-brutal-pressed);
+}
+
+.btn-brutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn-brutal-blue {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 4px solid #000;
+  background-color: var(--color-brutal-blue);
+  box-shadow: var(--shadow-brutal);
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-brutal-blue:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-brutal-pressed);
+}
+
+.btn-brutal-pink {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 4px solid #000;
+  background-color: var(--color-brutal-pink);
+  box-shadow: var(--shadow-brutal);
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-brutal-pink:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-brutal-pressed);
+}
+
+.btn-brutal-lime {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 4px solid #000;
+  background-color: var(--color-brutal-lime);
+  box-shadow: var(--shadow-brutal);
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-brutal-lime:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-brutal-pressed);
+}
+
+.btn-brutal-outline {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: var(--shadow-brutal);
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-brutal-outline:hover {
+  background-color: var(--color-brutal-yellow);
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-brutal-pressed);
+}
+
+/* Cards */
+.card-brutal {
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: var(--shadow-brutal);
+  padding: 1.5rem;
+}
+
+.card-brutal-yellow {
+  border: 4px solid #000;
+  background-color: var(--color-brutal-yellow);
+  box-shadow: var(--shadow-brutal);
+  padding: 1.5rem;
+}
+
+.card-brutal-hover {
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: var(--shadow-brutal);
+  padding: 1.5rem;
+  transition: all 150ms ease-in-out;
+}
+
+.card-brutal-hover:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+/* Inputs */
+.input-brutal {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.input-brutal:focus {
+  outline: none;
+  box-shadow: var(--shadow-brutal);
+}
+
+.input-brutal::placeholder {
+  color: #9ca3af;
+}
+
+/* Badge */
+.badge-brutal {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 4px solid #000;
+  background-color: var(--color-brutal-mint);
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+/* Divider */
+.divider-brutal {
+  border-top: 4px solid #000;
+  margin: 3rem 0;
+}
+
+/* Typography */
+.heading-brutal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.heading-brutal-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+  .heading-brutal-xl {
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-brutal-xl {
+    font-size: 6rem;
+  }
+}
+
+.heading-brutal-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .heading-brutal-lg {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-brutal-lg {
+    font-size: 3.75rem;
+  }
+}
+
+/* Navigation */
+.nav-link-brutal {
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 0.5rem 1rem;
+  border: 3px solid transparent;
+  color: #000;
+  text-decoration: none;
+  transition: all 150ms ease-in-out;
+}
+
+.nav-link-brutal:hover {
+  border-color: #000;
+  background-color: var(--color-brutal-yellow);
+}
+
+/* Utility Classes */
+
+/* Patterns */
+.bg-checkerboard {
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(#000 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    #000 10px,
+    #000 12px
+  );
+}
+
+/* Border width 3 */
+.border-3 {
+  border-width: 3px;
+}
+
+/* =============================================
+   playwith404 패럴랙스 & 캐릭터 애니메이션
+   ============================================= */
+
+/* 히어로 섹션 */
+.hero-parallax {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 패럴랙스 캐릭터 */
+.parallax-character {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  transition: transform 0.1s ease-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .parallax-character {
+    width: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .parallax-character {
+    width: 100px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* 스플래시 애니메이션 */
+@keyframes bounceIn {
+  0% { transform: scale(0) translateY(100px); opacity: 0; }
+  60% { transform: scale(1.1) translateY(-20px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.6s ease forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float 3s ease-in-out 0.5s infinite;
+}
+
+.animate-float-delay-2 {
+  animation: float 3s ease-in-out 1s infinite;
+}
+
+/* Gumroad 스타일 네비게이션 (검은 배경) */
+.nav-gumroad {
+  background-color: #000;
+  border-bottom: 4px solid #000;
+}
+
+.nav-gumroad .nav-link {
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  transition: none;
+}
+
+.nav-gumroad .nav-link:hover {
+  background-color: var(--color-char-lemon);
+  color: #000;
+  border-color: #000;
+}
+
+/* CTA 버튼 (파스텔 배경) */
+.btn-cta-gumroad {
+  background-color: var(--color-char-heart);
+  color: #000;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border: 4px solid #000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px #000;
+  transition: transform 100ms steps(1), box-shadow 100ms steps(1);
+}
+
+.btn-cta-gumroad:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000;
+  background-color: var(--color-char-lemon);
+}
+
+/* 섹션 배경 */
+.section-ghost { background-color: var(--color-char-ghost); }
+.section-lemon { background-color: var(--color-char-lemon); }
+.section-heart { background-color: var(--color-char-heart); }
+.section-bean { background-color: var(--color-char-bean); }
+.section-star { background-color: var(--color-char-star); }
+
+/* 가격 카드 */
+.pricing-card {
+  border: 4px solid #000;
+  border-radius: 0;
+  box-shadow: 6px 6px 0px #000;
+  padding: 2rem;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.pricing-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+.pricing-card.featured {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 12px 12px 0px #000;
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translate(6px, 6px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+/* 비활성화 버튼 */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 섹션 구분선 - 네오 브루탈리즘 */
+.divider-brutal-pattern {
+  height: 12px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #000 0px,
+    #000 20px,
+    var(--color-char-lemon) 20px,
+    var(--color-char-lemon) 40px
+  );
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+}
+
+/* 패턴 배경 오버레이 */
+.bg-dots-overlay {
+  position: relative;
+}
+
+.bg-dots-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* 섹션 구분을 위한 두꺼운 줄무늬 */
+.section-divider-stripes {
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #000,
+    #000 8px,
+    var(--color-char-heart) 8px,
+    var(--color-char-heart) 16px
+  );
+}

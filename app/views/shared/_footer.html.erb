@@ -1,0 +1,64 @@
+<footer class="bg-black text-white py-16 border-t-4 border-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <!-- Brand -->
+      <div>
+        <span class="font-display font-bold text-2xl block mb-4">playwith404</span>
+        <p class="text-gray-400 mb-4">창의적인 디지털 경험을 만듭니다</p>
+        <p class="text-gray-500 text-sm">playwith404@gmail.com</p>
+      </div>
+
+      <!-- Service -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">서비스</h4>
+        <ul class="space-y-2">
+          <li>
+            <a href="https://middle.cloudkakao.store/auth/login"
+               target="_blank" rel="noopener"
+               class="text-gray-400 hover:text-char-lemon transition-colors">
+              Cukee 바로가기
+            </a>
+          </li>
+          <li><%= link_to "요금제", pricing_path, class: "text-gray-400 hover:text-char-lemon transition-colors" %></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">회사</h4>
+        <ul class="space-y-2">
+          <li><a href="#about" class="text-gray-400 hover:text-char-lemon transition-colors">About</a></li>
+          <li><a href="#services" class="text-gray-400 hover:text-char-lemon transition-colors">Services</a></li>
+          <li><%= link_to "Contact", new_contact_path, class: "text-gray-400 hover:text-char-lemon transition-colors" %></li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">연락처</h4>
+        <ul class="space-y-2">
+          <li class="text-gray-400">playwith404@gmail.com</li>
+          <li class="text-gray-400">cukee.cloud</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500">&copy; <%= Date.current.year %> playwith404. All rights reserved.</p>
+        <div class="flex gap-3">
+          <a href="https://github.com/playwith404"
+             target="_blank" rel="noopener"
+             class="w-10 h-10 bg-char-ghost border-4 border-black shadow-[4px_4px_0px_#000]
+                    flex items-center justify-center hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000]
+                    font-bold text-black"
+             aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,148 @@
+<% content_for(:title) { "요금제 - playwith404" } %>
+
+<!-- Hero -->
+<section class="section-lemon border-b-4 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h1 class="heading-brutal-xl mb-6">Pricing</h1>
+    <p class="text-xl md:text-2xl max-w-2xl mx-auto">
+      무료로 시작하고, 필요하면 업그레이드하세요
+    </p>
+  </div>
+</section>
+
+<!-- Pricing Cards -->
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Free Plan -->
+      <div class="pricing-card bg-char-ghost">
+        <h3 class="font-display font-bold text-2xl mb-2">Free</h3>
+        <p class="text-4xl font-bold font-display mb-1">₩0</p>
+        <p class="text-gray-600 mb-6">/월</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>영화 추천 하루 5회</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>기본 장르 필터 5개</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>큐레이션 저장 10개</span>
+          </li>
+          <li class="flex items-center gap-2 text-gray-500">
+            <span>-</span>
+            <span>광고 포함</span>
+          </li>
+        </ul>
+        <%= link_to "시작하기", "https://middle.cloudkakao.store/auth/login",
+            class: "btn-brutal-outline w-full text-center block", target: "_blank", rel: "noopener" %>
+      </div>
+
+      <!-- Pro Plan (Featured) -->
+      <div class="pricing-card featured bg-char-heart relative">
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <span class="bg-black text-white px-4 py-1 font-bold text-sm">POPULAR</span>
+        </div>
+        <h3 class="font-display font-bold text-2xl mb-2">Pro</h3>
+        <p class="text-4xl font-bold font-display mb-1">₩4,900</p>
+        <p class="text-gray-600 mb-6">/월</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>무제한</strong> 영화 추천</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>전체 장르</strong> 필터</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span><strong>무제한</strong> 큐레이션 저장</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>광고 없음</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>우선 고객지원</span>
+          </li>
+        </ul>
+        <%= link_to "시작하기", "https://middle.cloudkakao.store/auth/login",
+            class: "btn-brutal w-full text-center block", target: "_blank", rel: "noopener" %>
+      </div>
+
+      <!-- Custom Plan -->
+      <div class="pricing-card bg-char-dog">
+        <h3 class="font-display font-bold text-2xl mb-2">Custom</h3>
+        <p class="text-4xl font-bold font-display mb-1">문의</p>
+        <p class="text-gray-600 mb-6">맞춤 설정</p>
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>Pro의 모든 기능</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>커스텀 장르 설정</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>전담 매니저</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-black font-bold">✓</span>
+            <span>API 연동 지원</span>
+          </li>
+        </ul>
+        <button class="btn-brutal-outline w-full text-center btn-disabled" disabled>
+          Coming Soon
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-20 section-ghost border-y-4 border-black">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="heading-brutal-lg text-center mb-12">자주 묻는 질문</h2>
+
+    <div class="space-y-4">
+      <%
+        faqs = [
+          ["무료 플랜의 제한은 무엇인가요?", "무료 플랜은 하루 5회 영화 추천, 기본 장르 필터 5개, 큐레이션 저장 10개를 제공합니다. 더 많은 기능이 필요하시면 Pro 플랜으로 업그레이드하세요."],
+          ["언제든 취소할 수 있나요?", "네, 언제든지 취소 가능합니다. 취소 후에도 결제 기간이 끝날 때까지 서비스를 이용하실 수 있습니다."],
+          ["Custom 플랜은 어떻게 문의하나요?", "Contact 페이지에서 '파트너십' 유형을 선택해 주세요. 담당자가 연락드립니다."],
+          ["Cukee 서비스란 무엇인가요?", "Cukee는 11개의 감성 티켓을 기반으로 AI가 맞춤형 영화를 큐레이션하는 서비스입니다. 영화 선택 피로를 해결하고 지금 기분에 맞는 영화를 발견할 수 있습니다."]
+        ]
+      %>
+      <% faqs.each do |question, answer| %>
+        <details class="card-brutal group cursor-pointer">
+          <summary class="font-bold text-lg list-none flex justify-between items-center">
+            <%= question %>
+            <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-4 pt-4 border-t-2 border-black"><%= answer %></p>
+        </details>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 md:py-32 bg-black text-white">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="heading-brutal-lg mb-6 text-white">
+      지금 바로 시작하세요
+    </h2>
+    <p class="text-xl mb-10 text-gray-300">
+      영화 선택 피로에서 벗어나 AI가 큐레이션하는 맞춤형 영화 전시회를 경험하세요
+    </p>
+    <%= link_to "무료로 시작하기", "https://middle.cloudkakao.store/auth/login",
+        class: "btn-cta-gumroad text-center text-lg px-8 py-4", target: "_blank", rel: "noopener" %>
+  </div>
+</section>

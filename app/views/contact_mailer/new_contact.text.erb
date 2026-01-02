@@ -1,0 +1,17 @@
+===================================
+새로운 문의가 도착했습니다
+===================================
+
+문의 유형: <%= @contact.inquiry_type_label %>
+
+이름: <%= @contact.name %>
+이메일: <%= @contact.email %>
+<% if @contact.company.present? %>회사: <%= @contact.company %><% end %>
+
+메시지:
+-----------------------------------
+<%= @contact.message %>
+-----------------------------------
+
+이 이메일은 Cukee 웹사이트에서 자동 발송되었습니다.
+(c) <%= Date.current.year %> playwith404
