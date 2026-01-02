@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
 /* 패럴랙스 캐릭터 */
 .parallax-character {
   position: absolute;
-  width: 60px;
+  width: 120px;
   height: auto;
   transition: transform 0.1s ease-out;
   z-index: 1;
@@ -365,13 +365,13 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) {
   .parallax-character {
-    width: 80px;
+    width: 160px;
   }
 }
 
 @media (min-width: 1024px) {
   .parallax-character {
-    width: 100px;
+    width: 200px;
   }
 }
 

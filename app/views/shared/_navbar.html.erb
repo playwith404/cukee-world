@@ -10,10 +10,10 @@
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex items-center gap-1">
-        <%= link_to "About", "#about", class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
-        <%= link_to "Services", "#services", class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
+        <%= link_to "About", about_path, class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
+        <%= link_to "Services", services_path, class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
         <%= link_to "Pricing", pricing_path, class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
-        <%= link_to "Contact", new_contact_path, class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
+        <%= link_to "Contact", contact_path, class: "nav-link text-white hover:bg-char-lemon hover:text-black px-4 py-2" %>
         <%= link_to "서비스 바로가기", "https://middle.cloudkakao.store/auth/login",
             class: "btn-cta-gumroad ml-4", target: "_blank", rel: "noopener" %>
       </div>
@@ -34,10 +34,10 @@
   <div class="hidden md:hidden border-t-3 border-white/20 bg-black"
        data-mobile-menu-target="menu">
     <div class="px-4 py-4 space-y-2">
-      <%= link_to "About", "#about", class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
-      <%= link_to "Services", "#services", class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
+      <%= link_to "About", about_path, class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
+      <%= link_to "Services", services_path, class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
       <%= link_to "Pricing", pricing_path, class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
-      <%= link_to "Contact", new_contact_path, class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
+      <%= link_to "Contact", contact_path, class: "block py-3 px-4 font-bold text-white hover:bg-char-lemon hover:text-black rounded transition-all" %>
       <%= link_to "서비스 바로가기", "https://middle.cloudkakao.store/auth/login",
           class: "block py-3 px-4 font-bold bg-char-heart text-black text-center border-3 border-black rounded-full mt-4",
           target: "_blank", rel: "noopener" %>

@@ -5,39 +5,32 @@
          data-controller="parallax">
 
   <!-- 패럴랙스 캐릭터들 -->
-  <img src="<%= asset_path('characters/ghost.svg') %>"
+  <img src="<%= asset_path('characters/ghost-head.svg') %>"
        class="parallax-character animate-float hidden md:block"
        data-parallax-target="character"
        data-speed="20" data-rotate="5"
        style="top: 10%; left: 5%;"
        alt="고스트 캐릭터">
 
-  <img src="<%= asset_path('characters/lemon.svg') %>"
+  <img src="<%= asset_path('characters/lemon-head.svg') %>"
        class="parallax-character animate-float-delay-1 hidden md:block"
        data-parallax-target="character"
        data-speed="40" data-rotate="8"
        style="top: 5%; right: 10%;"
        alt="레몬 캐릭터">
 
-  <img src="<%= asset_path('characters/heart.svg') %>"
+  <img src="<%= asset_path('characters/dog-head.svg') %>"
        class="parallax-character animate-float-delay-2 hidden md:block"
        data-parallax-target="character"
        data-speed="30" data-rotate="6"
        style="bottom: 20%; right: 5%;"
-       alt="하트 캐릭터">
+       alt="강아지 캐릭터">
 
-  <img src="<%= asset_path('characters/star.svg') %>"
-       class="parallax-character animate-float-slow hidden lg:block"
+  <img src="<%= asset_path('characters/bean-head.svg') %>"
+       class="parallax-character animate-float hidden lg:block"
        data-parallax-target="character"
        data-speed="25" data-rotate="4"
        style="bottom: 15%; left: 8%;"
-       alt="별 캐릭터">
-
-  <img src="<%= asset_path('characters/bean.svg') %>"
-       class="parallax-character animate-float hidden lg:block"
-       data-parallax-target="character"
-       data-speed="35" data-rotate="7"
-       style="top: 25%; right: 20%;"
        alt="콩 캐릭터">
 
   <!-- 히어로 콘텐츠 -->
@@ -54,7 +47,7 @@
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <%= link_to "서비스 시작하기", "https://middle.cloudkakao.store/auth/login",
           class: "btn-brutal text-center", target: "_blank", rel: "noopener" %>
-      <%= link_to "더 알아보기", "#about", class: "btn-brutal-outline text-center" %>
+      <%= link_to "더 알아보기", about_path, class: "btn-brutal-outline text-center" %>
     </div>
   </div>
 </section>
@@ -92,21 +85,17 @@
       <div class="relative">
         <div class="card-brutal bg-char-bean p-8">
           <div class="aspect-square bg-white border-4 border-black flex items-center justify-center relative overflow-hidden">
-            <div class="text-center">
-              <span class="text-8xl block mb-4">🎬</span>
-              <p class="font-display font-bold text-2xl">Cukee</p>
-              <p class="text-sm text-gray-600">by playwith404</p>
-            </div>
+            <%= image_tag "about-cukee.svg", alt: "Cukee by playwith404", class: "w-full h-full object-contain" %>
           </div>
         </div>
         <!-- 장식 요소 -->
         <div class="absolute -top-4 -right-4 w-16 h-16 bg-char-heart border-4 border-black
-                    shadow-brutal flex items-center justify-center text-2xl animate-float">
-          🎟️
+                    shadow-brutal flex items-center justify-center animate-float">
+          <%= render "shared/icon", name: "ticket", size: "w-8 h-8" %>
         </div>
         <div class="absolute -bottom-4 -left-4 w-14 h-14 bg-char-lemon border-4 border-black
-                    shadow-brutal flex items-center justify-center text-xl animate-float-delay-1">
-          🍿
+                    shadow-brutal flex items-center justify-center animate-float-delay-1">
+          <%= render "shared/icon", name: "popcorn", size: "w-7 h-7" %>
         </div>
       </div>
     </div>
@@ -129,8 +118,8 @@
       <!-- 서비스 1 -->
       <div class="card-brutal-hover bg-char-lemon">
         <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
-                    flex items-center justify-center text-3xl mb-6">
-          🎟️
+                    flex items-center justify-center mb-6">
+          <%= render "shared/icon", name: "ticket", size: "w-8 h-8" %>
         </div>
         <h3 class="font-bold text-2xl mb-3">11개 감성 티켓</h3>
         <p class="text-lg">장르가 아닌 감정으로 분류. "지금 우울해", "웃고 싶어" 같은 현재 기분에 맞는 영화를 발견합니다.</p>
@@ -139,8 +128,8 @@
       <!-- 서비스 2 -->
       <div class="card-brutal-hover bg-char-heart">
         <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
-                    flex items-center justify-center text-3xl mb-6">
-          🤖
+                    flex items-center justify-center mb-6">
+          <%= render "shared/icon", name: "robot", size: "w-8 h-8" %>
         </div>
         <h3 class="font-bold text-2xl mb-3">AI 맞춤 큐레이션</h3>
         <p class="text-lg">Llama 3.1 기반 AI가 프롬프트 하나로 완벽하게 개인화된 영화 전시회를 생성합니다.</p>
@@ -149,8 +138,8 @@
       <!-- 서비스 3 -->
       <div class="card-brutal-hover bg-char-bean">
         <div class="w-16 h-16 bg-white border-4 border-black shadow-brutal
-                    flex items-center justify-center text-3xl mb-6">
-          🖼️
+                    flex items-center justify-center mb-6">
+          <%= render "shared/icon", name: "gallery", size: "w-8 h-8" %>
         </div>
         <h3 class="font-bold text-2xl mb-3">3D 갤러리 경험</h3>
         <p class="text-lg">미술관처럼 영화 포스터를 감상하는 프리미엄 경험. 단순한 목록이 아닌 전시회 형태로 제공합니다.</p>
@@ -180,11 +169,8 @@
               </li>
             </ul>
           </div>
-          <div class="bg-char-star border-4 border-black p-6 aspect-video flex items-center justify-center">
-            <div class="text-center">
-              <span class="text-6xl block mb-2">🎪</span>
-              <p class="font-bold">서비스 스크린샷</p>
-            </div>
+          <div class="bg-char-start border-4 border-black aspect-video overflow-hidden">
+            <%= image_tag "screenshots/service-screenshot.png", alt: "Cukee 서비스 화면", class: "w-full h-full object-cover" %>
           </div>
         </div>
       </div>
@@ -310,7 +296,7 @@
       <%= link_to "무료로 시작하기", "https://middle.cloudkakao.store/auth/login",
           class: "bg-transparent text-white font-bold text-lg px-8 py-4 border-4 border-white hover:bg-white hover:text-black transition-colors text-center",
           target: "_blank", rel: "noopener" %>
-      <%= link_to "문의하기", new_contact_path,
+      <%= link_to "문의하기", contact_path,
           class: "bg-transparent text-white font-bold text-lg px-8 py-4 border-4 border-white hover:bg-white hover:text-black transition-colors text-center" %>
     </div>
   </div>

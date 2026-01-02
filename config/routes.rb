@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # Static pages
-  get "features", to: "pages#features", as: :features
+  get "about", to: "pages#about", as: :about
+  get "services", to: "pages#services", as: :services
   get "pricing", to: "pages#pricing", as: :pricing
+  get "contact", to: "pages#contact", as: :contact
 
   # Contact form
   resources :contacts, only: [ :new, :create ] do
