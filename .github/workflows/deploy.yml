@@ -79,6 +79,7 @@ jobs:
               docker run -d \
                 --name cukee-web \
                 --restart unless-stopped \
+                --add-host=host.docker.internal:host-gateway \
                 -p 80:80 \
                 -e RAILS_ENV=production \
                 -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
