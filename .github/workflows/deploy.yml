@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  GCP_REGION: asia-northeast3
+  GCP_REGION: us-west1
   IMAGE_NAME: cukee-web
 
 jobs:
