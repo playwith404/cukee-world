@@ -8,6 +8,7 @@ on:
 env:
   GCP_REGION: us-west1
   IMAGE_NAME: cukee-web
+  DEPLOY_PATH: /opt/cukee-world
 
 jobs:
   build-and-push:
@@ -60,36 +61,49 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Deploy to Compute Engine
+      - name: Copy deployment files to server
+        run: |
+          gcloud compute scp \
+            --zone=${{ secrets.GCE_ZONE }} \
+            --recurse \
+            docker-compose.ssl.yml \
+            nginx/ \
+            ${{ secrets.GCE_INSTANCE }}:${{ env.DEPLOY_PATH }}/
+
+      - name: Deploy with Docker Compose
         run: |
           gcloud compute ssh ${{ secrets.GCE_INSTANCE }} \
             --zone=${{ secrets.GCE_ZONE }} \
             --command="
+              cd ${{ env.DEPLOY_PATH }}
+
               # Configure Docker for Artifact Registry
               gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet
 
-              # Pull the latest image
-              docker pull ${{ env.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cukee-world/${{ env.IMAGE_NAME }}:latest
+              # Create .env file with secrets
+              cat > .env << 'ENVEOF'
+          GCP_REGION=${{ env.GCP_REGION }}
+          GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
+          IMAGE_TAG=latest
+          RAILS_ENV=production
+          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          RAILS_LOG_TO_STDOUT=true
+          RAILS_SERVE_STATIC_FILES=true
+          SMTP_ADDRESS=${{ secrets.SMTP_ADDRESS }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          ENVEOF
 
-              # Stop and remove existing container
-              docker stop cukee-web || true
-              docker rm cukee-web || true
+              # Pull latest image
+              docker compose -f docker-compose.ssl.yml pull web
 
-              # Run new container
-              docker run -d \
-                --name cukee-web \
-                --restart unless-stopped \
-                --add-host=host.docker.internal:host-gateway \
-                -p 80:80 \
-                -e RAILS_ENV=production \
-                -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
-                -e DATABASE_URL='${{ secrets.DATABASE_URL }}' \
-                -e RAILS_LOG_TO_STDOUT=true \
-                -e RAILS_SERVE_STATIC_FILES=true \
-                ${{ env.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cukee-world/${{ env.IMAGE_NAME }}:latest
+              # Deploy with zero-downtime (if possible)
+              docker compose -f docker-compose.ssl.yml up -d --remove-orphans
 
               # Run database migrations
-              docker exec cukee-web ./bin/rails db:migrate
+              docker compose -f docker-compose.ssl.yml exec -T web ./bin/rails db:migrate
 
               # Clean up old images
               docker image prune -f
@@ -97,7 +111,7 @@ jobs:
 
       - name: Health check
         run: |
-          sleep 10
+          sleep 15
           gcloud compute ssh ${{ secrets.GCE_INSTANCE }} \
             --zone=${{ secrets.GCE_ZONE }} \
-            --command="curl -f http://localhost/up || exit 1"
+            --command="curl -f http://localhost/up || curl -f https://localhost/up --insecure || exit 1"
