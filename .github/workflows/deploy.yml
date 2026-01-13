@@ -8,7 +8,7 @@ on:
 env:
   GCP_REGION: us-west1
   IMAGE_NAME: cukee-web
-  DEPLOY_PATH: /opt/cukee-world
+  DEPLOY_PATH: ~/cukee-world
 
 jobs:
   build-and-push:
@@ -61,27 +61,34 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Copy deployment files to server
+      - name: Prepare deployment directory and copy files
         run: |
+          # Create directory first via SSH
+          gcloud compute ssh ${{ secrets.GCE_INSTANCE }} \
+            --zone=${{ secrets.GCE_ZONE }} \
+            --command="mkdir -p ~/cukee-world/nginx"
+
+          # Copy files to home directory
           gcloud compute scp \
             --zone=${{ secrets.GCE_ZONE }} \
             --recurse \
             docker-compose.ssl.yml \
             nginx/ \
-            ${{ secrets.GCE_INSTANCE }}:${{ env.DEPLOY_PATH }}/
+            scripts/ \
+            ${{ secrets.GCE_INSTANCE }}:~/cukee-world/
 
       - name: Deploy with Docker Compose
         run: |
           gcloud compute ssh ${{ secrets.GCE_INSTANCE }} \
             --zone=${{ secrets.GCE_ZONE }} \
-            --command="
-              cd ${{ env.DEPLOY_PATH }}
+            --command='
+              cd ~/cukee-world
 
               # Configure Docker for Artifact Registry
               gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet
 
               # Create .env file with secrets
-              cat > .env << 'ENVEOF'
+              cat > .env << EOF
           GCP_REGION=${{ env.GCP_REGION }}
           GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
           IMAGE_TAG=latest
@@ -94,7 +101,7 @@ jobs:
           SMTP_PORT=${{ secrets.SMTP_PORT }}
           SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
-          ENVEOF
+          EOF
 
               # Pull latest image
               docker compose -f docker-compose.ssl.yml pull web
@@ -107,7 +114,7 @@ jobs:
 
               # Clean up old images
               docker image prune -f
-            "
+            '
 
       - name: Health check
         run: |

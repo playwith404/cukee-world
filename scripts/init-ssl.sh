@@ -7,7 +7,7 @@ set -e
 DOMAIN="playwith404.world"
 EMAIL="${CERTBOT_EMAIL:-admin@playwith404.world}"
 STAGING="${STAGING:-0}"  # Set to 1 for testing
-DEPLOY_PATH="${DEPLOY_PATH:-/opt/cukee-world}"
+DEPLOY_PATH="${DEPLOY_PATH:-$HOME/cukee-world}"
 
 # Colors for output
 RED='\033[0;31m'
