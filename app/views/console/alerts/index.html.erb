@@ -1,0 +1,162 @@
+<% content_for(:title) { "알림 설정 - Console | playwith404" } %>
+
+<div class="flex min-h-screen bg-gray-50">
+  <%= render "console/shared/sidebar" %>
+
+  <main class="flex-1 p-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="heading-brutal text-3xl mb-2">알림 설정</h1>
+      <p class="text-gray-600">중요한 이벤트에 대한 알림을 설정하세요.</p>
+    </div>
+
+    <!-- Flash Messages -->
+    <% if flash[:notice] %>
+      <div class="card-brutal bg-char-bean mb-6">
+        <p class="font-bold"><%= flash[:notice] %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="card-brutal bg-red-200 mb-6">
+        <p class="font-bold text-red-800"><%= flash[:alert] %></p>
+      </div>
+    <% end %>
+
+    <%= form_with model: @alert_setting, url: console_alerts_path, method: :patch, local: true do |f| %>
+      <!-- Notification Channel -->
+      <div class="card-brutal bg-white mb-8">
+        <h3 class="font-bold text-xl mb-4">알림 채널</h3>
+
+        <div class="space-y-4">
+          <div>
+            <%= f.label :notification_email, "알림 이메일", class: "block font-bold mb-2" %>
+            <%= f.email_field :notification_email, class: "input-brutal", placeholder: "alerts@company.com" %>
+            <p class="text-sm text-gray-600 mt-1">알림을 받을 이메일 주소</p>
+          </div>
+
+          <div class="border-t-2 border-black/10 pt-4" data-controller="alert-toggle">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold">Slack 알림</span>
+                <p class="text-sm text-gray-600">Slack 웹훅으로 알림 받기</p>
+              </div>
+              <%= f.check_box :slack_enabled,
+                  class: "w-6 h-6 border-4 border-black cursor-pointer",
+                  data: { alert_toggle_target: "toggle", action: "change->alert-toggle#toggle" } %>
+            </div>
+            <div class="mt-4 <%= @alert_setting.slack_enabled ? '' : 'opacity-50' %>" data-alert-toggle-target="settings">
+              <%= f.label :slack_webhook_url, "Slack Webhook URL", class: "block font-bold mb-2" %>
+              <%= f.text_field :slack_webhook_url,
+                  class: "input-brutal",
+                  placeholder: "https://hooks.slack.com/services/...",
+                  disabled: !@alert_setting.slack_enabled %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Types -->
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Usage Threshold -->
+        <div class="card-brutal bg-char-lemon" data-controller="alert-toggle">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-bold text-xl">사용량 임계값 알림</h3>
+              <p class="text-sm text-gray-700">월 사용량이 설정값에 도달하면 알림</p>
+            </div>
+            <%= f.check_box :usage_threshold_enabled,
+                class: "w-6 h-6 border-4 border-black cursor-pointer mt-1",
+                data: { alert_toggle_target: "toggle", action: "change->alert-toggle#toggle" } %>
+          </div>
+          <div class="<%= @alert_setting.usage_threshold_enabled ? '' : 'opacity-50' %>" data-alert-toggle-target="settings">
+            <%= f.label :usage_threshold_percent, "임계값 (%)", class: "block font-bold mb-2" %>
+            <div class="flex items-center gap-2">
+              <%= f.number_field :usage_threshold_percent,
+                  class: "input-brutal flex-1",
+                  min: 1, max: 100,
+                  disabled: !@alert_setting.usage_threshold_enabled %>
+              <span class="font-bold">%</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">현재 설정: 월 한도의 <%= @alert_setting.usage_threshold_percent %>% 도달 시 알림</p>
+          </div>
+        </div>
+
+        <!-- Error Rate -->
+        <div class="card-brutal bg-char-heart" data-controller="alert-toggle">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-bold text-xl">에러율 알림</h3>
+              <p class="text-sm text-gray-700">에러율이 설정값을 초과하면 알림</p>
+            </div>
+            <%= f.check_box :error_rate_enabled,
+                class: "w-6 h-6 border-4 border-black cursor-pointer mt-1",
+                data: { alert_toggle_target: "toggle", action: "change->alert-toggle#toggle" } %>
+          </div>
+          <div class="<%= @alert_setting.error_rate_enabled ? '' : 'opacity-50' %>" data-alert-toggle-target="settings">
+            <%= f.label :error_rate_threshold, "에러율 임계값 (%)", class: "block font-bold mb-2" %>
+            <div class="flex items-center gap-2">
+              <%= f.number_field :error_rate_threshold,
+                  class: "input-brutal flex-1",
+                  min: 0.1, max: 100, step: 0.1,
+                  disabled: !@alert_setting.error_rate_enabled %>
+              <span class="font-bold">%</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">현재 설정: 에러율 <%= @alert_setting.error_rate_threshold %>% 초과 시 알림</p>
+          </div>
+        </div>
+
+        <!-- Billing Alert -->
+        <div class="card-brutal bg-char-ghost" data-controller="alert-toggle">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-bold text-xl">빌링 알림</h3>
+              <p class="text-sm text-gray-700">예상 비용이 설정 금액에 도달하면 알림</p>
+            </div>
+            <%= f.check_box :billing_alert_enabled,
+                class: "w-6 h-6 border-4 border-black cursor-pointer mt-1",
+                data: { alert_toggle_target: "toggle", action: "change->alert-toggle#toggle" } %>
+          </div>
+          <div class="<%= @alert_setting.billing_alert_enabled ? '' : 'opacity-50' %>" data-alert-toggle-target="settings">
+            <%= f.label :billing_threshold, "금액 임계값 (원)", class: "block font-bold mb-2" %>
+            <div class="flex items-center gap-2">
+              <span class="font-bold">₩</span>
+              <%= f.number_field :billing_threshold,
+                  class: "input-brutal flex-1",
+                  min: 1000, step: 1000,
+                  disabled: !@alert_setting.billing_alert_enabled %>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">현재 설정: ₩<%= number_with_delimiter(@alert_setting.billing_threshold.to_i) %> 도달 시 알림</p>
+          </div>
+        </div>
+
+        <!-- Security Alert -->
+        <div class="card-brutal bg-char-bean" data-controller="alert-toggle">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-bold text-xl">보안 알림</h3>
+              <p class="text-sm text-gray-700">비정상적인 접근 시도 감지 시 알림</p>
+            </div>
+            <%= f.check_box :security_alert_enabled,
+                class: "w-6 h-6 border-4 border-black cursor-pointer mt-1",
+                data: { alert_toggle_target: "toggle", action: "change->alert-toggle#toggle" } %>
+          </div>
+          <div class="<%= @alert_setting.security_alert_enabled ? '' : 'opacity-50' %>" data-alert-toggle-target="settings">
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>• 새로운 IP에서의 접근</li>
+              <li>• 짧은 시간 내 다수의 실패한 요청</li>
+              <li>• API 키 비정상 사용 패턴</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="card-brutal bg-white">
+        <div class="flex justify-end">
+          <%= f.submit "설정 저장", class: "btn-brutal cursor-pointer" %>
+        </div>
+      </div>
+    <% end %>
+  </main>
+</div>

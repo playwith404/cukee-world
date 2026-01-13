@@ -1,0 +1,152 @@
+<% content_for(:title) { "빌링 - Console | playwith404" } %>
+
+<div class="flex min-h-screen bg-gray-50">
+  <%= render "console/shared/sidebar" %>
+
+  <main class="flex-1 p-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="heading-brutal text-3xl mb-2">빌링</h1>
+      <p class="text-gray-600">사용량 기반 비용을 확인하고 청구 내역을 관리하세요.</p>
+    </div>
+
+    <!-- Current Plan Card -->
+    <div class="card-brutal bg-char-star mb-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="text-sm text-gray-600 mb-1">현재 플랜</p>
+          <h2 class="text-3xl font-bold font-display"><%= @enterprise.plan_type_label %></h2>
+        </div>
+        <div class="text-right">
+          <p class="text-sm text-gray-600 mb-1">청구 기간</p>
+          <p class="font-bold">
+            <%= @current_period[:start_date].strftime("%Y.%m.%d") %> ~
+            <%= @current_period[:end_date].strftime("%Y.%m.%d") %>
+          </p>
+          <p class="text-sm text-gray-500">(<%= @current_period[:days_remaining] %>일 남음)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost Summary -->
+    <div class="grid md:grid-cols-4 gap-6 mb-8">
+      <%= render "console/shared/stats_card",
+          title: "기본 요금",
+          value: "₩#{number_with_delimiter(@estimated_cost[:base_price])}",
+          color: "char-lemon",
+          icon: "💎" %>
+
+      <%= render "console/shared/stats_card",
+          title: "API 사용 요금",
+          value: "₩#{number_with_delimiter(@estimated_cost[:api_calls_cost])}",
+          color: "char-ghost",
+          icon: "📊" %>
+
+      <%= render "console/shared/stats_card",
+          title: "초과 요금",
+          value: "₩#{number_with_delimiter(@estimated_cost[:overage_cost])}",
+          color: @estimated_cost[:overage_cost].positive? ? "char-heart" : "char-bean",
+          icon: "📈" %>
+
+      <%= render "console/shared/stats_card",
+          title: "예상 총액",
+          value: "₩#{number_with_delimiter(@estimated_cost[:total])}",
+          color: "char-star",
+          icon: "💰" %>
+    </div>
+
+    <!-- Usage Breakdown -->
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <!-- Usage Details -->
+      <div class="card-brutal bg-white">
+        <h3 class="font-bold text-xl mb-4">이번 달 사용량</h3>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center py-3 border-b-2 border-black/10">
+            <span class="font-bold">API 호출 횟수</span>
+            <span class="text-xl font-bold"><%= number_with_delimiter(@usage_breakdown[:api_calls]) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b-2 border-black/10">
+            <span class="font-bold">성공 호출</span>
+            <span class="text-xl font-bold text-green-700"><%= number_with_delimiter(@usage_breakdown[:successful_calls]) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b-2 border-black/10">
+            <span class="font-bold">에러 호출</span>
+            <span class="text-xl font-bold text-red-700"><%= number_with_delimiter(@usage_breakdown[:error_calls]) %></span>
+          </div>
+          <div class="flex justify-between items-center py-3">
+            <span class="font-bold">평균 응답 시간</span>
+            <span class="text-xl font-bold"><%= @usage_breakdown[:avg_response_time] %>ms</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Info -->
+      <div class="card-brutal bg-char-lemon">
+        <h3 class="font-bold text-xl mb-4">요금 안내</h3>
+        <div class="space-y-3">
+          <div class="card-brutal bg-white">
+            <div class="flex justify-between">
+              <span class="font-bold">스타터</span>
+              <span class="font-bold">무료</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">월 1,000회 호출 포함</p>
+          </div>
+          <div class="card-brutal bg-white <%= @enterprise.plan_type == 'growth' ? 'ring-4 ring-black' : '' %>">
+            <div class="flex justify-between">
+              <span class="font-bold">그로스</span>
+              <span class="font-bold">₩49,000/월</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">월 50,000회 호출 포함</p>
+            <% if @enterprise.plan_type == 'growth' %>
+              <span class="inline-block mt-2 px-2 py-1 bg-char-lemon border-2 border-black text-xs font-bold">현재 플랜</span>
+            <% end %>
+          </div>
+          <div class="card-brutal bg-white <%= @enterprise.plan_type == 'enterprise' ? 'ring-4 ring-black' : '' %>">
+            <div class="flex justify-between">
+              <span class="font-bold">엔터프라이즈</span>
+              <span class="font-bold">₩490,000/월</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">월 500,000회 호출 포함</p>
+            <% if @enterprise.plan_type == 'enterprise' %>
+              <span class="inline-block mt-2 px-2 py-1 bg-char-lemon border-2 border-black text-xs font-bold">현재 플랜</span>
+            <% end %>
+          </div>
+          <p class="text-sm text-gray-600 mt-4">* 초과 시 호출당 ₩10</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Billing History -->
+    <div class="card-brutal bg-white">
+      <h3 class="font-bold text-xl mb-4">청구 내역</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b-4 border-black">
+              <th class="text-left py-3 px-4">기간</th>
+              <th class="text-left py-3 px-4">청구서 번호</th>
+              <th class="text-right py-3 px-4">금액</th>
+              <th class="text-center py-3 px-4">상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @billing_history.each do |bill| %>
+              <tr class="border-b-2 border-black/10 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold"><%= bill[:period] %></td>
+                <td class="py-3 px-4 font-mono text-sm"><%= bill[:invoice_number] %></td>
+                <td class="py-3 px-4 text-right font-bold">₩<%= number_with_delimiter(bill[:amount]) %></td>
+                <td class="py-3 px-4 text-center">
+                  <% if bill[:status] == "paid" %>
+                    <span class="inline-block px-3 py-1 bg-char-bean border-2 border-black text-sm font-bold">완료</span>
+                  <% else %>
+                    <span class="inline-block px-3 py-1 bg-char-lemon border-2 border-black text-sm font-bold">대기</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>

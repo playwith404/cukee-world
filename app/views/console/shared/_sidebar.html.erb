@@ -1,0 +1,54 @@
+<aside class="w-64 bg-black text-white min-h-screen flex flex-col">
+  <div class="p-6 flex-1">
+    <!-- Logo -->
+    <%= link_to root_path, class: "block mb-8" do %>
+      <span class="font-display font-bold text-xl">playwith404</span>
+      <span class="block text-char-lemon text-sm font-bold">Console</span>
+    <% end %>
+
+    <!-- Navigation -->
+    <nav class="space-y-2">
+      <%= link_to console_dashboard_path,
+          class: "flex items-center gap-3 px-4 py-3 rounded font-bold transition-all #{request.path == console_dashboard_path ? 'bg-char-lemon text-black' : 'hover:bg-white/10'}" do %>
+        <span>📊</span>
+        <span>Dashboard</span>
+      <% end %>
+
+      <%= link_to console_api_usage_index_path,
+          class: "flex items-center gap-3 px-4 py-3 rounded font-bold transition-all #{request.path == console_api_usage_index_path ? 'bg-char-lemon text-black' : 'hover:bg-white/10'}" do %>
+        <span>📈</span>
+        <span>API 사용량</span>
+      <% end %>
+
+      <%= link_to console_billing_index_path,
+          class: "flex items-center gap-3 px-4 py-3 rounded font-bold transition-all #{request.path == console_billing_index_path ? 'bg-char-lemon text-black' : 'hover:bg-white/10'}" do %>
+        <span>💳</span>
+        <span>빌링</span>
+      <% end %>
+
+      <%= link_to console_api_keys_path,
+          class: "flex items-center gap-3 px-4 py-3 rounded font-bold transition-all #{request.path == console_api_keys_path ? 'bg-char-lemon text-black' : 'hover:bg-white/10'}" do %>
+        <span>🔑</span>
+        <span>API 키</span>
+      <% end %>
+
+      <%= link_to console_alerts_path,
+          class: "flex items-center gap-3 px-4 py-3 rounded font-bold transition-all #{request.path == console_alerts_path ? 'bg-char-lemon text-black' : 'hover:bg-white/10'}" do %>
+        <span>🔔</span>
+        <span>알림 설정</span>
+      <% end %>
+    </nav>
+  </div>
+
+  <!-- User Info & Logout -->
+  <div class="p-6 border-t border-white/20">
+    <div class="mb-4">
+      <p class="text-sm text-gray-400">로그인:</p>
+      <p class="font-bold truncate"><%= current_enterprise.name %></p>
+      <p class="text-xs text-char-lemon"><%= current_enterprise.plan_type_label %> 플랜</p>
+    </div>
+    <%= link_to "로그아웃", console_logout_path,
+        class: "block w-full text-center border-2 border-white rounded px-4 py-2 font-bold hover:bg-white hover:text-black transition-all",
+        data: { turbo_method: :delete } %>
+  </div>
+</aside>

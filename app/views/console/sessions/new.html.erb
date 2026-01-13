@@ -1,0 +1,108 @@
+<% content_for(:title) { "Console 로그인 - playwith404" } %>
+
+<!-- Hero Section -->
+<section class="section-ghost border-b-4 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h1 class="heading-brutal-xl mb-6">Console</h1>
+    <p class="text-xl md:text-2xl max-w-2xl mx-auto">
+      엔터프라이즈 고객을 위한 API 관리 콘솔
+    </p>
+  </div>
+</section>
+
+<!-- Token Input Form -->
+<section class="py-20 bg-white">
+  <div class="max-w-md mx-auto px-4">
+    <div class="card-brutal bg-char-lemon">
+      <h2 class="heading-brutal text-2xl mb-6 text-center">액세스 토큰 입력</h2>
+
+      <% if flash[:alert] %>
+        <div class="card-brutal bg-red-200 mb-6">
+          <p class="font-bold text-red-800"><%= flash[:alert] %></p>
+        </div>
+      <% end %>
+
+      <%= form_with url: console_login_path, method: :post, local: true,
+                    data: { controller: "token-input" }, class: "space-y-6" do |f| %>
+        <div>
+          <%= f.label :access_token, "액세스 토큰", class: "block font-bold mb-2" %>
+          <%= f.text_field :access_token,
+              class: "input-brutal",
+              placeholder: "ck_xxxx...",
+              required: true,
+              autocomplete: "off",
+              data: { token_input_target: "input", action: "input->token-input#validate" } %>
+          <p class="text-sm text-gray-600 mt-2">
+            엔터프라이즈 계약 시 발급받은 토큰을 입력하세요.
+          </p>
+        </div>
+
+        <div>
+          <%= f.submit "로그인",
+              class: "btn-brutal w-full cursor-pointer",
+              data: { token_input_target: "submit" } %>
+        </div>
+      <% end %>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600">
+          토큰이 없으신가요?
+          <%= link_to "문의하기", contact_path, class: "font-bold underline hover:text-black" %>
+        </p>
+      </div>
+    </div>
+
+    <!-- Features List -->
+    <div class="mt-12 space-y-4">
+      <h3 class="font-bold text-lg text-center mb-6">Console 기능</h3>
+
+      <div class="card-brutal bg-white">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-char-ghost border-4 border-black flex items-center justify-center text-2xl">
+            📊
+          </div>
+          <div>
+            <h4 class="font-bold">API 사용량 분석</h4>
+            <p class="text-sm text-gray-600">실시간 API 호출 통계 및 트렌드 분석</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-brutal bg-white">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-char-heart border-4 border-black flex items-center justify-center text-2xl">
+            💳
+          </div>
+          <div>
+            <h4 class="font-bold">빌링 관리</h4>
+            <p class="text-sm text-gray-600">사용량 기반 비용 확인 및 청구서 관리</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-brutal bg-white">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-char-bean border-4 border-black flex items-center justify-center text-2xl">
+            🔑
+          </div>
+          <div>
+            <h4 class="font-bold">API 키 관리</h4>
+            <p class="text-sm text-gray-600">환경별 API 키 생성 및 관리</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-brutal bg-white">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-char-star border-4 border-black flex items-center justify-center text-2xl">
+            🔔
+          </div>
+          <div>
+            <h4 class="font-bold">알림 설정</h4>
+            <p class="text-sm text-gray-600">사용량, 에러율, 빌링 알림 커스터마이징</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
