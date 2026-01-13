@@ -14,7 +14,7 @@ class AlertSetting < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP },
             allow_blank: true
   validates :slack_webhook_url,
-            format: { with: /\Ahttps:\/\/hooks\.slack\.com\// },
+            format: { with: /\Ahttps:\/\/hooks\.slack\.com\/[^\s]+\z/ },
             allow_blank: true
 
   def any_alert_enabled?
