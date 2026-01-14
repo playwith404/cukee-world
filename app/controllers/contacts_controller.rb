@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
       ContactMailer.new_contact(@contact).deliver_later
       redirect_to thank_you_contacts_path
     else
-      render :new, status: :unprocessable_entity
+      render "pages/contact", status: :unprocessable_entity
     end
   end
 
