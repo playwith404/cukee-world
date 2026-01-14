@@ -92,7 +92,7 @@ Push to main branch to auto-deploy.
 
 ## Links
 
-- **Service URL**: https://middle.cloudkakao.store/auth/login
+- **Service URL**: https://cukee.world/auth/login
 - **Domain**: cukee.cloud
 - **Contact**: playwith404@gmail.com
 
