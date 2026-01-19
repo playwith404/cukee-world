@@ -13,7 +13,7 @@
 <!-- Pricing Cards -->
 <section class="py-20 bg-white">
   <div class="max-w-5xl mx-auto px-4">
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
       <!-- Free Plan -->
       <div class="pricing-card bg-char-ghost">
         <h3 class="font-display font-bold text-2xl mb-2">Free</h3>
@@ -41,40 +41,6 @@
             class: "btn-brutal-outline w-full text-center block", target: "_blank", rel: "noopener" %>
       </div>
 
-      <!-- Pro Plan (Featured) -->
-      <div class="pricing-card featured bg-char-heart relative">
-        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <span class="bg-black text-white px-4 py-1 font-bold text-sm">POPULAR</span>
-        </div>
-        <h3 class="font-display font-bold text-2xl mb-2">Pro</h3>
-        <p class="text-4xl font-bold font-display mb-1">₩4,900</p>
-        <p class="text-gray-600 mb-6">/월</p>
-        <ul class="space-y-3 mb-8 text-left">
-          <li class="flex items-center gap-2">
-            <span class="text-black font-bold">✓</span>
-            <span><strong>무제한</strong> 영화 추천</span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-black font-bold">✓</span>
-            <span><strong>전체 장르</strong> 필터</span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-black font-bold">✓</span>
-            <span><strong>무제한</strong> 큐레이션 저장</span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-black font-bold">✓</span>
-            <span>광고 없음</span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-black font-bold">✓</span>
-            <span>우선 고객지원</span>
-          </li>
-        </ul>
-        <%= link_to "시작하기", "https://cukee.world/auth/login",
-            class: "btn-brutal w-full text-center block", target: "_blank", rel: "noopener" %>
-      </div>
-
       <!-- Custom Plan -->
       <div class="pricing-card bg-char-dog">
         <h3 class="font-display font-bold text-2xl mb-2">Custom</h3>
@@ -83,7 +49,7 @@
         <ul class="space-y-3 mb-8 text-left">
           <li class="flex items-center gap-2">
             <span class="text-black font-bold">✓</span>
-            <span>Pro의 모든 기능</span>
+            <span>무제한 영화 추천</span>
           </li>
           <li class="flex items-center gap-2">
             <span class="text-black font-bold">✓</span>
@@ -114,7 +80,7 @@
     <div class="space-y-4">
       <%
         faqs = [
-          ["무료 플랜의 제한은 무엇인가요?", "무료 플랜은 하루 5회 영화 추천, 기본 장르 필터 5개, 큐레이션 저장 10개를 제공합니다. 더 많은 기능이 필요하시면 Pro 플랜으로 업그레이드하세요."],
+          ["무료 플랜의 제한은 무엇인가요?", "무료 플랜은 하루 5회 영화 추천, 기본 장르 필터 5개, 큐레이션 저장 10개를 제공합니다. 더 많은 기능이 필요하시면 Custom 플랜을 문의해주세요."],
           ["언제든 취소할 수 있나요?", "네, 언제든지 취소 가능합니다. 취소 후에도 결제 기간이 끝날 때까지 서비스를 이용하실 수 있습니다."],
           ["Custom 플랜은 어떻게 문의하나요?", "Contact 페이지에서 '파트너십' 유형을 선택해 주세요. 담당자가 연락드립니다."],
           ["Cukee 서비스란 무엇인가요?", "Cukee는 11개의 감성 티켓을 기반으로 AI가 맞춤형 영화를 큐레이션하는 서비스입니다. 영화 선택 피로를 해결하고 지금 기분에 맞는 영화를 발견할 수 있습니다."]
