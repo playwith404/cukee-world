@@ -93,7 +93,7 @@ Push to main branch to auto-deploy.
 ## Links
 
 - **Service URL**: https://cukee.world/auth/login
-- **Domain**: cukee.cloud
+- **Domain**: cukee.world
 - **Contact**: playwith404@gmail.com
 
 ## License
