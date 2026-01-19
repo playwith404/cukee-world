@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default from: ENV.fetch("MAILER_FROM_EMAIL", "noreply@cukee.cloud")
+  default from: ENV.fetch("MAILER_FROM_EMAIL", "noreply@cukee.world")
 
   def new_contact(contact)
     @contact = contact
