@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.save
-      ContactMailer.new_contact(@contact).deliver_later
+      ContactMailer.new_contact(@contact).deliver_now
       redirect_to thank_you_contacts_path
     else
       render "pages/contact", status: :unprocessable_entity
