@@ -101,6 +101,8 @@ jobs:
           SMTP_PORT=${{ secrets.SMTP_PORT }}
           SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          CONTACT_EMAIL=${{ secrets.SMTP_USERNAME }}
+          MAILER_FROM_EMAIL=${{ secrets.SMTP_USERNAME }}
           EOF
 
               # Pull latest image
