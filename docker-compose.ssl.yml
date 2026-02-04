@@ -12,6 +12,8 @@ services:
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
+      CONTACT_EMAIL: ${CONTACT_EMAIL}
+      MAILER_FROM_EMAIL: ${MAILER_FROM_EMAIL}
     expose:
       - "80"
     restart: unless-stopped
